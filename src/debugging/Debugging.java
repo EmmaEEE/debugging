@@ -16,39 +16,224 @@ public class Debugging {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+       
+        Scanner input = new Scanner(System.in);
         
-        Scanner keyedInput= new Scanner(System.in);
         
-        String sixcharacters;
-        int value=0;
-        boolean valid=false;
+        boolean repeat = true;
+        String userInput;
+        int userInputInt;
+        System.out.println("Enter a string that is greater than 6 characters long -->");
         
-        while (valid==false)
+        while(repeat == true)
         {
-            System.out.println("Enter a String that is over 6 charcters long");
-            sixcharacters= keyedInput.nextLine();
-            System.out.println("");
-        
+            userInput = input.next();
             try
             {
-                value= sixcharacters.length();
-//                System.out.println(value);
-            
-            if (value>6)
+                if(userInput.length()>6)
                 {
-                valid=true;
-                }  
+                    repeat = false;
+                    System.out.println("The string you entered is greater than 6 characters.");
+                }
+                else
+                {
+                    System.out.println("The string you entered is not greater than 6 characters.  Try again -->");
+                    repeat = true;
+                }
             }
+            catch(Exception e)
+                    {
+                        System.out.println("This is a general error.  Try Again -->");
+                        repeat = true;
+                    }
+        }
         
-            catch(ArithmeticException e)
+        repeat = true;
+        System.out.println("Enter a string that contains the letter a -->");
+        while(repeat == true)
+        {
+            try
             {
-                System.out.println("Sorry your string is not six charcters long");
-                System.out.println("");
+                String test;
+                boolean exit = false;
+                userInput = input.next();
+                int runs = userInput.length();
+                int character = 0;
+                while(exit == false)
+                {
+                    test = Character.toString(userInput.charAt(character));
+                    if(test.equals("a"))
+                    {
+                        System.out.println("The string you entered contains the letter a");
+                        exit = true;
+                        repeat = false;
+                    }
+                    else
+                    {
+                        if(character == runs-1)
+                        {
+                            System.out.println("The string you entered does not contain the letter a.  Try again -->");
+                            exit = true;
+                            repeat = true;
+                        }
+                        else
+                        {
+                        character = character+1;
+                        exit = false;
+                        }
+                    }
+                }
             }
-        }  
+            catch(Exception e)
+                    {
+                        System.out.println("This is a general error.  Try again -->");
+                        repeat = true;
+                    }
+        }
         
-        System.out.println("This is valid");
-        // TODO code application logic here
+        repeat = true;
+        System.out.println("Enter an integer between 5 and 500 characters -->");
+        do
+        {
+            try
+            {
+                userInputInt = input.nextInt();
+                if(5<=userInputInt && userInputInt<=500)
+                {
+                    repeat = false;
+                    System.out.println("The integer you entered is between 5 and 500.");
+                }
+                else
+                {
+                    System.out.println("The integer you entered is not between 5 and 500.  Try again -->");
+                    repeat = true;
+                }
+            }
+            catch(java.util.InputMismatchException e)
+                    {
+                        System.out.println("This is a general error.  Try again -->");
+                    }   
+        }
+        
+        while(repeat == true);
+        repeat = true;
+        System.out.println("Enter a string that is between 5 and 15 characters long and does not contain the letter z -->");
+        while(repeat == true)
+        {
+            userInput = input.next();
+            
+            try
+            {
+                if(5<=userInput.length() && 15>=userInput.length())
+                {
+                
+                try
+                {
+                String test;
+                boolean exit = false;
+                int runs = userInput.length();
+                int character = 0;
+                while(exit == false)
+                {
+                    test = Character.toString(userInput.charAt(character));
+                    if(test.equals("z"))
+                    {
+                        System.out.println("The string you entered contains the letter z.  Try again -->");
+                        exit = true;
+                        repeat = true;
+                    }
+                    else
+                    {
+                        if(character == runs-1)
+                        {
+                            exit = true;
+                            repeat = false;
+                            System.out.println("The string entered is between 5 and 15 characters long and does not contain the letter z -->");
+                        }
+                        else
+                        {
+                        character = character+1;
+                        exit = false;
+                        System.out.println("Enter a string that is between 5 and 15 characters long and does not contain the letter z -->");
+                        }
+                    }
+                }
+                }
+                catch(Exception e)
+                {
+                    System.out.println("This is a general error.  Try again -->");
+                    repeat = true;
+                }
+                }
+                else
+                {
+                    System.out.println("The string you enterd is not within 5 to 15 characters.  Try again -->");
+                }
+            }
+            catch(Exception e)
+                    {
+                        System.out.println("This is a general error.  Try again -->");
+                        repeat = true;
+                    }
+            
+        }
+        repeat = true;
+        System.out.println("Enter a negative integer -->");
+        while(repeat==true)
+        {
+            userInputInt = input.nextInt();
+            try
+            {
+                if(userInputInt<0)
+                {
+                    System.out.println("The integer you entered is negative.");
+                    repeat = false;
+                }
+                else
+                {
+                    System.out.println("The integer you entered is not negative.  Try again -->");
+                    repeat = true;
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("This is a general error.  Try again -->");
+                repeat = true;
+            }
+        }
+        
+        repeat = true;
+        System.out.println("Enter a positive, odd integer -->");
+        while(repeat == true)
+        {
+            userInputInt = input.nextInt();
+            try
+            {
+                if(userInputInt>0)
+                {
+                    if(userInputInt%2 == 0)
+                    {
+                        System.out.println("The integer you entered is not odd.  Try again -->");
+                        repeat = true;
+                    }
+                    else
+                    {
+                        System.out.println("The integer you entered is positive and odd.");
+                        repeat = false;
+                    }
+                }
+                else
+                {
+                    System.out.println("The integer you entered is not positive.  Try again -->");
+                    repeat = true;
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("This is a general error.  Try again -->");
+                repeat = true;
+            }
+        }
     }
     
 }
